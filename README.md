@@ -1,3 +1,23 @@
+# Personal Notes
+## Steps to create Angular project (requires node/npm)
+1. install angular cli by running `npm i -g @angular/cli`
+2. scaffold the app by running `ng new app-name`
+    - use `ng g component component-name -m module-name --spec false --prefix false` to generate and register a component
+3. use `ng serve` to run the dev server on [http://localhost:4200](http://localhost:4200)
+4. Basic bindings:
+    - `[childProperty]="parentProperty"` binds `@Input` property `childProperty` on the child component to the class property `parentProperty` on the parent component
+    - `(childProperty)="parentFnHandler($event)"` binds `@Output` property `childProperty` on the child component to the `parentFnHandler()` function on the parent
+    - `#varName` on the child component gives a reference to that component/class so the parent can call functions `(click)="varName.fnName()"` or read properties
+4. if the object may be null when trying to access its property use the safe navigation operator `?` as in `{{couldBeNull?.propertyName}}`
+5. Structural directives begin with an astrik `*` and add/remove elements from the dom
+    - `*ngFor="let event of events"` loops over collections
+    - `*ngIf="event?.location"` if the event object has a location property include the element and its children in the DOM
+        - if element visibility changes frequenty it may be better to simple hide the element by binding to the hidden property `[hidden]="event?.location"`
+    - `[ngSwitch]="event?.time"` in the parent component will look for `*ngSwitchCase="valueExpression"` or `*ngSwitchDefault` in child components
+6. Dynamically apply styles using the `[ngClass]=""` syntax
+    - `[ngStyle]={{style1: booleanExp1  ? 'trueValue' : 'falseValue', style2: booleanExp2 ? 'trueValue' : 'falseValue'}}` works the same way
+
+
 # FirstAngularApp
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.0-rc.1.
